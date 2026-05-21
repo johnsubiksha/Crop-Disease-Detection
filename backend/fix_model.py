@@ -1,14 +1,12 @@
 import tensorflow as tf
 
-# Load old model
-model = tf.keras.models.load_model(
+old_model = tf.keras.models.load_model(
     "models/mobilenet_finetuned_crop_model.h5",
     compile=False
 )
 
-# Save in new format
-model.save(
-    "models/fixed_model.keras"
+old_model.save_weights(
+    "models/model.weights.h5"
 )
 
-print("Model fixed and saved!")
+print("Weights saved!")
