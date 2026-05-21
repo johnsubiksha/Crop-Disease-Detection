@@ -20,14 +20,14 @@ logging.basicConfig(level=logging.INFO)
 # ==========================================
 
 model = tf.keras.models.load_model(
-    "../models/mobilenet_finetuned_crop_model.h5"
+    "models/mobilenet_finetuned_crop_model.h5"
 )
 
 # ==========================================
 # Load Class Names
 # ==========================================
 
-with open("../models/class_names.json", "r") as f:
+with open("models/class_names.json", "r") as f:
     class_names = json.load(f)
 
 # ==========================================
