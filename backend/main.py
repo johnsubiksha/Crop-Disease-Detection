@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 # ==========================================
 
 model = tf.keras.models.load_model(
-    "models/mobilenet_finetuned_crop_model.h5"
+    "models/fixed_model.keras"
 )
 
 # ==========================================
