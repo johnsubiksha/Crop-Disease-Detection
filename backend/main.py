@@ -10,13 +10,6 @@ from PIL import Image
 
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
-from tensorflow.keras.applications import MobileNetV2
-
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import Dropout
-from tensorflow.keras.layers import GlobalAveragePooling2D
-
-from tensorflow.keras.models import Sequential
 
 # ==========================================
 # Logging
@@ -25,50 +18,12 @@ from tensorflow.keras.models import Sequential
 logging.basicConfig(level=logging.INFO)
 
 # ==========================================
-# Number of Classes
+# Load Model
 # ==========================================
 
-NUM_CLASSES = 29
+model = tf.keras.models.load_model(
 
-# ==========================================
-# Base Model
-# ==========================================
-
-base_model = MobileNetV2(
-
-    weights='imagenet',
-
-    include_top=False,
-
-    input_shape=(128,128,3)
-)
-
-base_model.trainable = False
-
-# ==========================================
-# Final Model
-# ==========================================
-
-model = Sequential([
-
-    base_model,
-
-    GlobalAveragePooling2D(),
-
-    Dense(128, activation='relu'),
-
-    Dropout(0.3),
-
-    Dense(NUM_CLASSES, activation='softmax')
-])
-
-# ==========================================
-# Load Saved Weights
-# ==========================================
-
-model.load_weights(
-
-    "models/model.weights.h5"
+    "models/fixed_model.keras"
 )
 
 print("\nModel Loaded Successfully!\n")
@@ -145,6 +100,12 @@ async def predict(file: UploadFile = File(...)):
         img = Image.open(file.file)
 
         print("Image opened successfully")
+
+        # ==================================
+        # Convert RGB
+        # ==================================
+
+        img = img.convert("RGB")
 
         # ==================================
         # Resize
