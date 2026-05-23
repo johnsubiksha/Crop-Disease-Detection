@@ -125,10 +125,11 @@ export default function App() {
                 </h3>
                 <div className="flex flex-col gap-3">
                   {[
-                    ['01', 'Upload',     'Drop any JPEG or PNG of a crop leaf'],
-                    ['02', 'Preprocess', 'Image is resized to 128×128 and normalised'],
-                    ['03', 'Inference',  'MobileNet model predicts the disease class'],
-                    ['04', 'Results',    'Confidence score and all probabilities returned'],
+                    ['01','Upload crop leaf image'],
+                    ['02','AI preprocesses image input'],
+                    ['03','Deep learning extracts leaf patterns'],
+                    ['04', 'Disease classification performed'],
+                    ['05', 'Prediction confidence displayed'],
                   ].map(([num, title, desc]) => (
                     <div key={num} className="flex items-start gap-3">
                       <span className="font-mono-custom text-xs text-forest-700 w-5 flex-shrink-0 pt-0.5">
